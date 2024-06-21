@@ -8,3 +8,14 @@ THIS CODE CONTAINS SEVEN TASKS:
 5.Data Update: Update the user's query result and Car ID into the provided CSV file.
 6.Search Function Implementation: Implement a search function that allows the user to find car information by Car ID. Either a linear search or a binary search algorithm can be used.
 7.Sorting Algorithm Application: Sort the Car information using a subsumption sort or a quick sort algorithm to optimise the search efficiency.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+8. Provide an option to display an unsorted list of all car records in the company's database.
+9. Allow users to view car records sorted by ID, price, or brand. Implement sorting using either Merge
+Sort or Quicksort.
+10. Enable users to search for the best-selling cars, sorted by brand name. Use Radix Sort, Bubble Sort,
+or Selection Sort for sorting, and Binary Search for searching.
+11. When a car is purchased, the system should generate a bill for the customer. This bill must include
+the customer's name, customer ID, car ID, car brand, year of production, color, price, any applicable discount, and a unique random purchase order number. It should also display the total price of the purchase.
+12. Users should be able to search for issued bills by customer ID or bill date. Implement this search using the Linear Search algorithm.
+13. Thesystemshouldgenerateareportofallcompanypurchaseswithinaspecifiedperiod.Thisreport should include car details (ID, brand, color, customer name, exact date, and price) and the total price of all sold cars. Use a binary search algorithm to compile this list, and sort the items by price using Quicksort.
+
