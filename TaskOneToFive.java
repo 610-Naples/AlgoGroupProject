@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 21 11:18:22 2024
-
-@author: siyuzhang
-"""
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,20 +7,27 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
-public class CarSystem {
+public class Practical {
 
     // Method for validating user IDs
     public static boolean validateUser(String studentId, String usersCsv) {
+    	String regex = "^CST2209\\d{3}$";
+        Pattern pattern = Pattern.compile(regex);
+        if (!pattern.matcher(studentId).matches()) {
+            System.out.println("Invalid user.");
+            return false;
+        }
+
         try (BufferedReader reader = new BufferedReader(new FileReader(usersCsv))) {
             String line;
-            // Read the first line to skip the header
+            // 跳过CSV文件的标题行
             reader.readLine();
             while ((line = reader.readLine()) != null) {
-                // Split the line by comma and get the first part (user ID)
                 String[] parts = line.split(",");
                 if (parts[0].equals(studentId)) {
-                    return true; // User ID is valid
+                    return true; // 用户ID格式正确且存在于文件中
                 }
             }
         } catch (IOException e) {
@@ -181,5 +180,103 @@ public class CarSystem {
 
         // Start the interactive search
         interactiveSearch(cars);
+        String USERS_CSV = "users.csv"; // user CSV file directory
+        String CARS_CSV = "cars.csv"; // car CSV file directory
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your student ID: ");
+        String studentId = scanner.nextLine();
+
+        //Verify student ID format and existence
+        if (!validateUser(studentId, USERS_CSV)) {
+            System.out.println("Invalid student ID.");
+            return; // if user ID invalid then pop out
+        }
+        System.out.print("Select an option: ");
+        int option = scanner.nextInt(); 
+        scanner.nextLine(); 
+
+        
+        System.out.println("\n--- Main Menu ---");
+        System.out.println("1. Add a new car");
+        System.out.println("2. Search for a car by ID");
+        System.out.println("3. Display all cars");
+        System.out.println("4. Exit");
+        System.out.print("Select an option: ");
+
+        int option = scanner.nextInt();
+        scanner.nextLine(); // Consuming line breaks at the end of a line
+
+        switch (option) {
+            case 1:
+                // add new cars
+                addNewCar(CARS_CSV, scanner);
+                break;
+            case 2:
+                // search cars
+                searchCarById(CARS_CSV, scanner);
+                break;
+            case 3:
+                // displaycar
+                displayAllCars(CARS_CSV);
+                break;
+            case 4:
+                // exit car
+                System.out.println("Exiting the program.");
+                scanner.close();
+                return;
+            default:
+                System.out.println("Invalid option. Please try again.");
+                break;
+        }
+
+        scanner.close();
     }
+
+    // add new method for car
+    public static void addNewCar(String carsCsv, Scanner scanner) {
+        System.out.println("Enter the following details for the new car:");
+        String brand = scanner.nextLine(); // brand，used for generate car ID
+        String color = scanner.nextLine();
+        String country = scanner.nextLine();
+        String year = scanner.nextLine();
+        String price = scanner.nextLine();
+
+        List<String> newCarData = new ArrayList<>();
+        String carId = generateCarId(brand); // Generate car IDs based on brand
+        newCarData.add(carId);
+        // ... add info about cars
+        newCarData.add(color);
+        newCarData.add(country);
+        newCarData.add(year);
+        newCarData.add(price);
+
+        updateCarsCsv(newCarData, carsCsv); // renew CSV file
+        System.out.println("New car added successfully.");
+    }
+
+    // method for select car
+    public static void searchCarById(String carsCsv, Scanner scanner) {
+        System.out.print("Enter Car ID to search: ");
+        String carId = scanner.nextLine();
+        List<List<String>> cars = loadCarsData(carsCsv);
+        List<String> foundCar = binarySearchCar(cars, carId);
+        if (!foundCar.isEmpty()) {
+            System.out.println("Car found: ");
+            for (String info : foundCar) {
+                System.out.print(info + " ");
+            }
+        } else {
+            System.out.println("Car not found.");
+        }
+    }
+
+    //  display all cars
+    public static void displayAllCars(String carsCsv) {
+        List<List<String>> cars = loadCarsData(carsCsv);
+        for (List<String> car : cars) {
+            System.out.println(car);
+        }
+    }
+    
 }
