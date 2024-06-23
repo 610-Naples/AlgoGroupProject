@@ -10,8 +10,8 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Practical {
-    private static final String CARS_CSV = "cars.csv"; 
-    private static final String USERS_CSV = "users.csv"; 
+	private static final String CARS_CSV = "/Users/siyuzhang/Desktop/cars.csv";
+	private static final String USERS_CSV = "/Users/siyuzhang/Desktop/users.csv";
 
     // Method for validating user IDs
     public static boolean validateUser(String studentId, String usersCsv) {
@@ -146,10 +146,10 @@ public class Practical {
         System.out.print("Enter your student ID: ");
         String studentId = scanner.nextLine();
         System.out.print("Select an option: ");
-        int option = scanner.nextInt(); 
+        int option = scanner.nextInt(); // 读取整数选项
         scanner.nextLine(); 
 
-        
+        // 显示功能选项菜单
         System.out.println("\n--- Main Menu ---");
         System.out.println("1. Add a new car");
         System.out.println("2. Search for a car by ID");
@@ -158,23 +158,23 @@ public class Practical {
         System.out.print("Select an option: ");
 
         int option1 = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine(); // 消耗行尾的换行符
 
         switch (option1) {
             case 1:
-                
+                // 添加新汽车
                 addNewCar(CARS_CSV, scanner);
                 break;
             case 2:
-                
+                // 搜索汽车
                 searchCarById(CARS_CSV, scanner);
                 break;
             case 3:
-                
+                // 显示所有汽车
                 displayAllCars(CARS_CSV);
                 break;
             case 4:
-                
+                // 退出程序
                 System.out.println("Exiting the program.");
                 scanner.close();
                 return;
