@@ -1,0 +1,7 @@
+Date,Customer Name,Customer ID,Car ID,Company,Dealer Name,Color,Price ($),Discount,Purchase Order Number,Total Price
+1/2/2022,Jimmy,CST2209199,C_CND_000514,Volvo,S40,Pale White,42000,0.2,PO_237050,33600
+2/2/2022,Markus,CST2209185,C_CND_000111,Subaru,Outback,Pale White,57001,0.4,PO_561829,34200.6
+8/2/2022,Yonda,CST2209166,C_CND_000550,Cadillac,DeVille,Pale White,22000,0.3,PO_561829,15400
+9/3/2022,Ricky,CST2209188,C_CND_000466,Chevrolet,Monte Carlo,Black,44000,0.2,PO_561829,35200
+9/3/2022,Jamie,CST2209198,C_CND_000107,Volvo,C70,Black,49000,0.2,PO_227446,39200
+9/3/2022,Jeremy,CST2209177,C_CND_000110,Chevrolet,Camaro,Pale White,17000,0.5,PO_130307,8500
